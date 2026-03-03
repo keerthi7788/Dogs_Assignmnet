@@ -36,8 +36,8 @@ func InitializeServer(ctx context.Context, cfg configs.ApxConfig) (*http.Server,
 	logger.Info("PostgreSQL Test connection established")
 
 	// Seed data
-	if err := seeds.SeedDogs(ctx, postgresConn, "../../dogs.json"); err != nil {
-		logger.Error("Failed to seed dog data", err)
+	if err := seeds.SeedDogs(ctx, postgresConn, "dogs.json"); err != nil {
+		logger.Error("file path does not exists", err)
 		return nil, err
 	}
 	logger.Info("Bulk dog data seeded successfully")

@@ -11,7 +11,7 @@ import (
 
 // SeedDogs loads dogs from a JSON file and inserts them into PostgreSQL using pgxpool
 func SeedDogs(ctx context.Context, db *pgxpool.Pool, filePath string) error {
-	log.Println("Loading seed file:", filePath)
+	log.Println("getting filepath:", filePath)
 
 	file, err := os.Open(filePath)
 	if err != nil {
