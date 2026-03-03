@@ -1,0 +1,9 @@
+services:
+  dogs_postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5450:5432"  # Map host 5450 to container 5432
+    environment:
+      POSTGRES_USER: dogs
+      POSTGRES_PASSWORD: dogs123
+      POSTGRES_DB: dogs_db

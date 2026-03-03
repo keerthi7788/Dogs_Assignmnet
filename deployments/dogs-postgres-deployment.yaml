@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dogs-db
+  namespace: dogs-namespace
+
+spec:
+  replicas: 1
+  serviceName: dogs-db-service
+
+  selector:
+    matchLabels:
+      app: dogs-db-pod
+
+  template:
+    metadata:
+      labels:
+        app: dogs-db-pod
+
+    spec:
+      containers:
+        - name: dogs-db-container
+          image: postgres:15.8-alpine
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 5432
+
+          env:
+            - name: POSTGRES_USER
+              value: "dogs"
+
+            - name: POSTGRES_PASSWORD
+              value: "dogs123"
+
+            - name: POSTGRES_DB
+              value: "dogs"
+
+            - name: PGDATA
+              value: "/app/data"
+
+          volumeMounts:
+            - name: dogs-storage
+              mountPath: /app/
+
+      volumes:
+        - name: dogs-storage
+          persistentVolumeClaim:
+            claimName: dogs-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dogs-db-service
+  namespace: dogs-namespace
+
+spec:
+  clusterIP: None
+
+  selector:
+    app: dogs-db-pod
+
+  ports:
+    - port: 5432
+      targetPort: 5432
