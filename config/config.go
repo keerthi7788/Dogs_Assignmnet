@@ -45,18 +45,18 @@ var k = koanf.New(".") // "." is the key delimiter
 
 // Load reads the configuration from YAML and returns ApxConfig
 func Load() ApxConfig {
-	cfg := DefaultConfig // fallback to default
+	var cfg ApxConfig
 
 	// Try loading from file
 	if err := k.Load(file.Provider("/etc/secrets/config.yaml"), yaml.Parser()); err != nil {
 		log.Println("Warning: could not load config.yaml, using default config:", err)
-		return cfg
+		return DefaultConfig
 	}
 
 	// Unmarshal into ApxConfig struct
 	if err := k.Unmarshal("", &cfg); err != nil {
 		log.Println("Warning: could not parse config.yaml, using default config:", err)
-		return cfg
+		return DefaultConfig
 	}
 
 	return cfg
