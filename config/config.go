@@ -20,6 +20,7 @@ type Postgres struct {
 	User     string `koanf:"user"`
 	Password string `koanf:"password"`
 	Dbname   string `koanf:"db"`
+	SslMode  string `koanf:"sslmode"`
 }
 
 var DefaultConfig = ApxConfig{
@@ -30,6 +31,7 @@ var DefaultConfig = ApxConfig{
 		User:     "dogs",
 		Password: "dogs123",
 		Dbname:   "dogs_db",
+		SslMode:  "disable",
 	},
 	PostgresTest: Postgres{
 		Host:     "localhost",
@@ -37,6 +39,7 @@ var DefaultConfig = ApxConfig{
 		User:     "dogs",
 		Password: "dogs123",
 		Dbname:   "dogs_db",
+		SslMode:  "disable",
 	},
 }
 

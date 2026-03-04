@@ -14,8 +14,8 @@ import (
 
 // Connect establishes a connection to the PostgreSQL database
 func Connect(ctx context.Context, dbConfig configs.Postgres) (*pgxpool.Pool, error) {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		dbConfig.Host, dbConfig.Port, dbConfig.User, dbConfig.Password, dbConfig.Dbname)
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
+		dbConfig.Host, dbConfig.Port, dbConfig.User, dbConfig.Password, dbConfig.Dbname, dbConfig.SslMode)
 
 	// Open a new database connection
 	conn, err := pgxpool.New(ctx, psqlInfo)
