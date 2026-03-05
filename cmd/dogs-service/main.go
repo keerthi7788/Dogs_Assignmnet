@@ -74,7 +74,8 @@ func main() {
 	}
 
 	logger.Info("Server listening on port:", cfg.Port)
-	if err := server.Listen(ctx, cfg.Port); err != nil {
+	addr := ":" + cfg.Port
+	if err := server.Listen(ctx, addr); err != nil {
 		logger.Fatal("Server failed to listen", err)
 	}
 }
