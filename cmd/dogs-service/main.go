@@ -28,13 +28,6 @@ func InitializeServer(ctx context.Context, cfg configs.ApxConfig) (*http.Server,
 	}
 	logger.Info("PostgreSQL connection established")
 
-	postgresTestConn, err := postgresql.Connect(ctx, cfg.PostgresTest)
-	if err != nil {
-		logger.Error("Error connecting to PostgreSQL Test DB", err)
-		return nil, err
-	}
-	logger.Info("PostgreSQL Test connection established")
-
 	// Seed data
 	if err := seeds.SeedDogs(ctx, postgresConn, "dogs.json"); err != nil {
 		logger.Error("file path does not exists", err)
@@ -46,7 +39,7 @@ func InitializeServer(ctx context.Context, cfg configs.ApxConfig) (*http.Server,
 	dogRepo := postgresql.NewDogRepository(postgresConn)
 
 	// Services
-	healthSvc := health.NewService(logger.Logger, postgresConn, postgresTestConn)
+	healthSvc := health.NewService(logger.Logger, postgresConn)
 	dogSvc := service.NewDogService(dogRepo)
 
 	// Handlers
