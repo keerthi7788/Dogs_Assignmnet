@@ -1,5 +1,4 @@
-# Dogs_Assignmnet
-# Dogs Service API
+# Dogs_Assignmnet API's
 
 This project implements a REST API for managing a list of dogs. The service allows users to create, read, update, and delete dog records through HTTP endpoints.
 
@@ -8,7 +7,9 @@ The application is built using Go with the Chi router and uses PostgreSQL for pe
 The goal of this project is to expose a list of dogs through an HTTP API and allow modifications to the list while ensuring that all interactions are stored permanently in the database.
 
 ------------------------------------------------------------
+Clone the repository
 
+https://dogs-assignmnet-1.onrender.com
 Live Application
 
 Public URL
@@ -91,7 +92,7 @@ Running the Application Locally
 
 Clone the repository
 
-git clone https://github.com/YOUR_USERNAME/dogs-service.git
+https://github.com/keerthi7788/Dogs_Assignmnet.git
 
 cd dogs-service
 
